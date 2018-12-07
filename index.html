@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang='pl'>
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
+    <meta name='description' content='Generator Haseł'>
+    <meta name='author' content='Piotr Francug'>
+    <link href='/assets/bootstrap.min.css' rel='stylesheet'>
+    <link href='/assets/favicon.png' type='image/png' rel='shortcut icon' />
+    <title>Generator Haseł</title>
+</head>
+
+<body class='bg-light' style='padding-bottom: 50px'>
+    <nav class='navbar navbar-dark bg-dark'>
+        <span class='navbar-brand mb-0 h1'>
+            Generator Haseł
+        </span>
+    </nav>
+    <div class='container my-3'>
+        <div class='row justify-content-center my-3'>
+            <form class='col-auto'>
+                <div class='form-row align-items-center'>
+                    <div class='col-auto'>
+                        <div class='custom-control custom-checkbox'>
+                            <input type='checkbox' class='custom-control-input' id='passSave'>
+                            <label class='custom-control-label' for='passSave'>
+                                Kopiuj hasło automatycznie
+                            </label>
+                        </div>
+                    </div>
+                    <div class='col-auto'>
+                        <button type='submit' class='btn btn-outline-primary' id='passGen'>
+                            Generuj hasło
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class='row justify-content-center my-3'>
+            <div class='input-group col-4 my-1 justify-content-center'>
+                <label for='passLengthLetVal'>Ilość liter: <span id='passLengthLetTxt'>6</span></label>
+                <input type='range' class='custom-range' min='0' max='32' step='2' value='6' id='passLengthLetVal'>
+            </div>
+            <div class='input-group col-4 my-1 justify-content-center'>
+                <label for='passLengthNumVal'>Ilość cyfr: <span id='passLengthNumTxt'>2</span></label>
+                <input type='range' class='custom-range' min='0' max='32' step='2' value='2' id='passLengthNumVal'>
+            </div>
+        </div>
+        <div class='row justify-content-center'>
+            <small class='text-muted my-1'>Łączna długość hasła: <span id='passLength'>8</span></small>
+        </div>
+        <div class='row justify-content-center my-5' id='passwords'>
+        </div>
+    </div>
+    <nav class='navbar fixed-bottom navbar-dark bg-dark justify-content-center'>
+        <span class='text-muted'>
+            Piotr Francug
+        </span>
+    </nav>
+    <script src='/index.js'></script>
+    <script src='/assets/jquery-3.3.1.slim.min.js'></script>
+    <script src='/assets/popper.min.js'></script>
+    <script src='/assets/bootstrap.min.js'></script>
+</body>
+
+</html>
