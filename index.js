@@ -5,6 +5,7 @@ let passLength = {
     letters: 6,
     numbers: 2,
 }
+let passNum = 0
 
 const generatePassword = () => {
     let password = ''
@@ -51,22 +52,37 @@ if (localStorage.getItem('passSave') === 'true') {
     document.querySelector('#passSave').checked = true
 }
 
-const passwordsArray = () => {
-    Array.from(document.querySelectorAll('#passCopy')).forEach(copy => {
-        copy.addEventListener('click', function (event) {
-            this.parentElement.previousElementSibling.select()
-            document.execCommand('copy')
-        })
-    })
-}
 document.querySelector('#passGen').addEventListener('click', (e) => {
     e.preventDefault()
-    const passwords = document.querySelector('#passwords')
-    passwords.insertAdjacentHTML('afterbegin',
-        "<div class='input-group my-1 col-8'><input type='text' class='form-control' placeholder='password' id='pass' readonly><div class='input-group-append '><button class='btn btn-outline-dark' type='button' id='passCopy'>Kopiuj</button></div></div>"
-    )
-    passwordsArray()
-    document.querySelector('#pass').value = generatePassword()
+
+    const newPass1 = document.createElement('div')
+    newPass1.className = 'input-group my-1 col-8'
+
+    const newPass2 = document.createElement('input')
+    newPass2.className = 'form-control'
+    newPass2.id = 'pass'
+    newPass2.readOnly = true
+    newPass2.type = 'text'
+    newPass2.value = generatePassword()
+
+    const newPass3 = document.createElement('div')
+    newPass3.className = 'input-group-append'
+
+    const newPass4 = document.createElement('button')
+    newPass4.className = 'btn btn-outline-dark'
+    newPass4.id = `passCopy${passNum += 1}`
+    newPass4.innerText = 'Kopiuj'
+    newPass4.type = 'button'
+
+    newPass1.appendChild(newPass2)
+    newPass1.appendChild(newPass3).appendChild(newPass4)
+    document.querySelector('#passwords').prepend(newPass1)
+
+    document.querySelector(`#passCopy${passNum}`).addEventListener('click', (e) => {
+        e.path[1].previousElementSibling.select()
+        document.execCommand('copy')
+    })
+
     if (document.querySelector('#passSave').checked === true) {
         document.querySelector('#pass').select()
         document.execCommand('copy')
