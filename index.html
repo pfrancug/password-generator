@@ -7,6 +7,7 @@
     <meta name='description' content='Generator Haseł'>
     <meta name='author' content='Piotr Francug'>
     <link href='/assets/bootstrap.min.css' rel='stylesheet'>
+    <link href='/assets/style.css' rel='stylesheet'>
     <link href='/assets/favicon.png' type='image/png' rel='shortcut icon' />
     <title>Generator Haseł</title>
 </head>
@@ -17,40 +18,74 @@
             Generator Haseł
         </span>
     </nav>
-    <div class='container my-3'>
+    <div class='container'>
         <div class='row justify-content-center my-3'>
-            <form class='col-auto'>
-                <div class='form-row align-items-center'>
-                    <div class='col-auto'>
-                        <div class='custom-control custom-checkbox'>
-                            <input type='checkbox' class='custom-control-input' id='passSave'>
-                            <label class='custom-control-label' for='passSave'>
-                                Kopiuj hasło automatycznie
+            <form class='form-group col-6'>
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-5 col-lg-3 my-1">Ilość liter: <span id='passLengthLetTxt'>6</span></div>
+                    <div class="col-12 col-sm-12 col-md-7 col-lg-9 my-1">
+                        <div class="input-group my-2">
+                            <input type='range' class='custom-range' min='0' max='32' step='2' value='6' id='passLengthLetVal'>
+                        </div>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col-12 col-sm-12 col-md-5 col-lg-3 my-1">Ilość cyfr: <span id='passLengthNumTxt'>2</span></div>
+                    <div class="col-12 col-sm-12 col-md-7 col-lg-9 my-1">
+                        <div class="input-group my-2">
+                            <input type='range' class='custom-range' min='0' max='32' step='2' value='2' id='passLengthNumVal'>
+                        </div>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class='col-12 col-sm-9 col-md-11 col-lg-9'>
+                        <div class='row justify-content-end'>
+                            <small class='text-muted'>Łączna długość hasła: <span id='passLength'>8</span></small>
+                        </div>
+                    </div>
+                    <div class="w-100"></div>
+                    <legend class="col-form-label col-12 col-sm-12 col-md-5 col-lg-3">
+                        Generuj:
+                    </legend>
+                    <div class="col-12 col-sm-12 col-md-7 col-lg-9 my-2">
+                        <div class="form-check">
+                            <input class="form-check-input" name="gridRadios" type="radio" id="gridRadios1" value="1"
+                                checked>
+                            <label class="form-check-label" for="gridRadios1">
+                                1 hasło
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" name="gridRadios" type="radio" id="gridRadios2" value="10"
+                                disabled>
+                            <label class="form-check-label" for="gridRadios2">
+                                10 haseł
                             </label>
                         </div>
                     </div>
-                    <div class='col-auto'>
-                        <button type='submit' class='btn btn-outline-primary' id='passGen'>
-                            Generuj hasło
+                    <div class="w-100"></div>
+                    <div class="col-12 col-sm-12 col-md-5 col-lg-3 my-1">Autokopiowanie:</div>
+                    <div class="col-12 col-sm-12 col-md-7 col-lg-9 my-1">
+                        <div class="form-check">
+                            <input class="form-check-input badge-warning checkbox-warning" type="checkbox" id="passSave">
+                            <label class="form-check-label" for="passSave">
+                                Tak, poproszę :3
+                                <!-- Nie! -->
+                            </label>
+                        </div>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col-12 my-2">
+                        <button class='btn btn-dark btn-block' id='passGen'>
+                            Generuj
                         </button>
                     </div>
                 </div>
             </form>
-        </div>
-        <div class='row justify-content-center my-3'>
-            <div class='input-group col-4 my-1 justify-content-center'>
-                <label for='passLengthLetVal'>Ilość liter: <span id='passLengthLetTxt'>6</span></label>
-                <input type='range' class='custom-range' min='0' max='32' step='2' value='6' id='passLengthLetVal'>
+            <div class="w-100"></div>
+            <div class='col-6'>
+                <div class='row justify-content-center my-2' id='passwords'>
+                    <!-- Generated password goes here -->
+                </div>
             </div>
-            <div class='input-group col-4 my-1 justify-content-center'>
-                <label for='passLengthNumVal'>Ilość cyfr: <span id='passLengthNumTxt'>2</span></label>
-                <input type='range' class='custom-range' min='0' max='32' step='2' value='2' id='passLengthNumVal'>
-            </div>
-        </div>
-        <div class='row justify-content-center'>
-            <small class='text-muted my-1'>Łączna długość hasła: <span id='passLength'>8</span></small>
-        </div>
-        <div class='row justify-content-center my-5' id='passwords'>
         </div>
     </div>
     <nav class='navbar fixed-bottom navbar-dark bg-dark justify-content-center'>
@@ -58,7 +93,7 @@
             Piotr Francug
         </span>
     </nav>
-    <script src='/index.js'></script>
+    <script src='/assets/index.js'></script>
     <script src='/assets/jquery-3.3.1.slim.min.js'></script>
     <script src='/assets/popper.min.js'></script>
     <script src='/assets/bootstrap.min.js'></script>
