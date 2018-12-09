@@ -8,7 +8,5 @@
   },
   "author": "Piotr Francug",
   "license": "MIT",
-  "dependencies": {
-    "live-server": "^1.2.1"
-  }
+  "dependencies": {}
 }
