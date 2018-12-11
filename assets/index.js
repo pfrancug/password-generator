@@ -1,6 +1,8 @@
 const vowels = 'aeuy'
 const consonants = 'bcdfghjkmnprstwz'
 const numbers = '123456789'
+// some letters and/or numbers are cut out
+// due to the possibility of misunderstanding
 let passLength = {
     letters: 6,
     numbers: 2,
@@ -45,16 +47,33 @@ if (localStorage.getItem('passLength') !== null) {
     document.querySelector('#passLength').textContent = +passLength.letters + +passLength.numbers
 }
 
-document.querySelector('#passSave').addEventListener('change', (e) => {
-    localStorage.setItem('passSave', document.querySelector('#passSave').checked)
+document.querySelector('#passRadio1').addEventListener('change', (e) => {
+    document.querySelector('#passCopyAuto').disabled = false
+    localStorage.setItem('passRadioVal', e.target.value)
 })
-if (localStorage.getItem('passSave') === 'true') {
-    document.querySelector('#passSave').checked = true
+
+document.querySelector('#passRadio10').addEventListener('change', (e) => {
+    document.querySelector('#passCopyAuto').disabled = true
+    localStorage.setItem('passRadioVal', e.target.value)
+})
+
+if (localStorage.getItem('passRadioVal') !== null) {
+    const passRadioVal = localStorage.getItem('passRadioVal')
+    document.querySelector(`#passRadio${passRadioVal}`).checked = true
+    if (passRadioVal !== '1') {
+        document.querySelector('#passCopyAuto').disabled = true
+    }
 }
 
-document.querySelector('#passGen').addEventListener('click', (e) => {
-    e.preventDefault()
+document.querySelector('#passCopyAuto').addEventListener('change', (e) => {
+    localStorage.setItem('passCopyAuto', document.querySelector('#passCopyAuto').checked)
+})
 
+if (localStorage.getItem('passCopyAuto') === 'true') {
+    document.querySelector('#passCopyAuto').checked = true
+}
+
+const generatePassElement = () => {
     const newPass1 = document.createElement('div')
     newPass1.className = 'input-group my-1 col-12'
 
@@ -82,9 +101,19 @@ document.querySelector('#passGen').addEventListener('click', (e) => {
         e.path[1].previousElementSibling.select()
         document.execCommand('copy')
     })
+}
 
-    if (document.querySelector('#passSave').checked === true) {
-        document.querySelector('#pass').select()
-        document.execCommand('copy')
+document.querySelector('#passGen').addEventListener('click', (e) => {
+    e.preventDefault()
+    if (document.querySelector('#passRadio1').checked) {
+        generatePassElement()
+        if (document.querySelector('#passCopyAuto').checked) {
+            document.querySelector('#pass').select()
+            document.execCommand('copy')
+        }
+    } else if (document.querySelector('#passRadio10').checked) {
+        for (let i = 0; i < document.querySelector('#passRadio10').value; i++) {
+            generatePassElement()
+        }
     }
 })
