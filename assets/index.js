@@ -103,10 +103,18 @@ const generatePassElement = () => {
     })
 }
 
+const generateSpaceElement = () => {
+    const newSpace = document.createElement('div')
+    newSpace.className = 'progress-bar bg-secondary col-9'
+
+    document.querySelector('#passwords').prepend(newSpace)
+}
+
 document.querySelector('#passGen').addEventListener('click', (e) => {
     e.preventDefault()
     if (document.querySelector('#passRadio1').checked) {
         generatePassElement()
+        generateSpaceElement()
         if (document.querySelector('#passCopyAuto').checked) {
             document.querySelector('#pass').select()
             document.execCommand('copy')
@@ -115,5 +123,6 @@ document.querySelector('#passGen').addEventListener('click', (e) => {
         for (let i = 0; i < document.querySelector('#passRadio10').value; i++) {
             generatePassElement()
         }
+        generateSpaceElement()
     }
 })
