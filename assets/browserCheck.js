@@ -21,7 +21,7 @@ const version = detectIE()
 
 const pushAlert = function (version) {
 	document.querySelector('#main').innerHTML =
-		'<div class="jumbotron col-12 text-center">' +
+		'<div class="jumbotron col-12 my-4 text-center">' +
 		'<p class="h3 brand">Twoja przęglądarka "' + version + '" nie jest wspierana :(</p>' +
 		'<samp class="">Sugerowane przeglądarki: Chrome / Firefox</samp></div>'
 }
