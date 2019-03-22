@@ -2,8 +2,6 @@ const vowels = 'aeuy'
 const consonants = 'bcdfghjkmnprstwz'
 const numbers = '123456789'
 const specials = '!@#$%'
-// some letters and/or numbers are cut out
-// due to the possibility of misunderstanding
 let passLength = {
     letters: 6,
     numbers: 2,
@@ -81,54 +79,50 @@ document.querySelector('#passCopyAuto').addEventListener('change', (e) => {
 document.querySelector('#passCopyAuto').checked = localStorage.getItem('passCopyAuto') === 'true' ? true : false
 
 const generatePassElement = () => {
-    const newPass1 = document.createElement('div')
-    newPass1.className = 'input-group my-1 col-12'
-
-    const newPass2 = document.createElement('input')
-    newPass2.className = 'form-control alert-dark'
-    newPass2.id = 'pass'
-    newPass2.readOnly = true
-    newPass2.type = 'text'
-    newPass2.value = generatePassword()
-
-    const newPass3 = document.createElement('div')
-    newPass3.className = 'input-group-append'
-
-    const newPass4 = document.createElement('button')
-    newPass4.className = 'btn btn-dark'
-    newPass4.id = `passCopy${passNum += 1}`
-    newPass4.innerText = 'Kopiuj'
-    newPass4.type = 'button'
-
-    newPass1.appendChild(newPass2)
-    newPass1.appendChild(newPass3).appendChild(newPass4)
-    document.querySelector('#passwords').prepend(newPass1)
-
-    document.querySelector(`#passCopy${passNum}`).addEventListener('click', (e) => {
-        e.path[1].previousElementSibling.select()
+    const inputGroup = document.createElement('div')
+    inputGroup.className = 'input-group my-1 col-12'
+    const formControl = document.createElement('input')
+    formControl.className = 'form-control alert-dark'
+    formControl.id = 'pass'
+    formControl.readOnly = true
+    formControl.type = 'text'
+    formControl.value = generatePassword()
+    const inputGroupAppend = document.createElement('div')
+    inputGroupAppend.className = 'input-group-append'
+    const button = document.createElement('button')
+    button.className = 'btn btn-dark'
+    button.id = `passCopy${passNum += 1}`
+    button.innerText = 'Kopiuj'
+    button.type = 'button'
+    button.addEventListener('click', (e) => {
+        formControl.select()
         document.execCommand('copy')
     })
+    inputGroup.appendChild(formControl)
+    inputGroup.appendChild(inputGroupAppend).appendChild(button)
+    return inputGroup
 }
 
 const generateSpaceElement = () => {
     const newSpace = document.createElement('div')
     newSpace.className = 'progress-bar bg-secondary col-9'
-    document.querySelector('#passwords').prepend(newSpace)
+    return newSpace
 }
 
 document.querySelector('#passGen').addEventListener('click', (e) => {
     e.preventDefault()
+    document.querySelector('#passwords').innerHTML = ''
+    document.querySelector('#passwords').append(generateSpaceElement())
     if (document.querySelector('#passRadio1').checked) {
-        generatePassElement()
-        generateSpaceElement()
+        document.querySelector('#passwords').append(generatePassElement())
         if (document.querySelector('#passCopyAuto').checked) {
             document.querySelector('#pass').select()
             document.execCommand('copy')
         }
     } else if (document.querySelector('#passRadio10').checked) {
         for (let i = 0; i < document.querySelector('#passRadio10').value; i++) {
-            generatePassElement()
+            document.querySelector('#passwords').append(generatePassElement())
         }
-        generateSpaceElement()
     }
+    document.querySelector('#passwords').append(generateSpaceElement())
 })

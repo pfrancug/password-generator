@@ -1,18 +1,37 @@
+body {
+	background-color: #f8f9fa;
+	color: #212529;
+}
+
+/* Text and background color for dark mode */
+@media (prefers-color-scheme: dark) {
+	body {
+		background-color: #212529;
+		color: #f8f9fa;
+	}
+}
+
+/* Customization of bootstrap */
 .custom-range::-webkit-slider-thumb {
 	background-color: #343a40 !important
 }
+
 .custom-range::-webkit-slider-thumb:active {
 	background-color: #6c757d !important
 }
+
 .custom-range::-moz-range-thumb {
 	background-color: #343a40 !important
 }
+
 .custom-range::-moz-range-thumb:active {
 	background-color: #6c757d !important
 }
+
 .custom-range::-ms-thumb {
 	background-color: #343a40 !important
 }
+
 .custom-range::-ms-thumb:active {
 	background-color: #6c757d !important
 }
