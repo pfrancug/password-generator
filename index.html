@@ -12,7 +12,7 @@
     <title>Generator Haseł</title>
 </head>
 
-<body class='bg-light' style='padding-bottom: 50px'>
+<body style='padding-bottom: 50px'>
     <nav class='navbar navbar-dark bg-dark'>
         <span class='navbar-brand mb-0 h1'>
             Generator Haseł
@@ -22,29 +22,49 @@
         <div class='row justify-content-center my-3' id='main'>
             <form class='form-group col-6'>
                 <div class='row'>
-                    <div class='col-12 col-sm-12 col-md-5 col-lg-4 my-1'>Ilość liter: <span id='passLengthLetTxt'>6</span></div>
+                    <div class='col-12 col-sm-12 col-md-5 col-lg-4 my-1'>
+                        Ilość liter:
+                        <span id='passLengthLetTxt'>
+                            6
+                        </span>
+                    </div>
                     <div class='col-12 col-sm-12 col-md-7 col-lg-8 my-1'>
                         <div class='input-group my-2'>
-                            <input type='range' class='custom-range' min='0' max='32' step='2' value='6' id='passLengthLetVal'>
+                            <input type='range' class='custom-range' min='0' max='32' step='2' value='6'
+                                id='passLengthLetVal'>
                         </div>
                     </div>
                     <div class='w-100'></div>
-                    <div class='col-12 col-sm-12 col-md-5 col-lg-4 my-1'>Ilość cyfr: <span id='passLengthNumTxt'>2</span></div>
+                    <div class='col-12 col-sm-12 col-md-5 col-lg-4 my-1'>
+                        Ilość cyfr:
+                        <span id='passLengthNumTxt'>
+                            2
+                        </span>
+                    </div>
                     <div class='col-12 col-sm-12 col-md-7 col-lg-8 my-1'>
                         <div class='input-group my-2'>
-                            <input type='range' class='custom-range' min='0' max='32' step='2' value='2' id='passLengthNumVal'>
+                            <input type='range' class='custom-range' min='0' max='32' step='2' value='2'
+                                id='passLengthNumVal'>
                         </div>
                     </div>
                     <div class='w-100'></div>
-                    <div class='col-12 col-sm-12 col-md-5 col-lg-4 my-1'>Znak specjalny:</div>
+                    <div class='col-12 col-sm-12 col-md-5 col-lg-4 my-1'>
+                        Znak specjalny:
+                    </div>
                     <div class='col-12 col-sm-12 col-md-7 col-lg-8 my-1'>
                         <div class='form-check'>
-                            <input class='form-check-input badge-warning checkbox-warning' type='checkbox' id='specialChar'>
+                            <input class='form-check-input badge-warning checkbox-warning' type='checkbox'
+                                id='specialChar'>
                         </div>
                     </div>
                     <div class='w-100'></div>
                     <div class='col-auto'>
-                        <small class='text-muted'>Długość hasła: <span id='passLength'>8</span></small>
+                        <small class='text-muted'>
+                            Długość hasła:
+                            <span id='passLength'>
+                                8
+                            </span>
+                        </small>
                     </div>
                     <div class='w-100'></div>
                     <legend class='col-form-label col-12 col-sm-12 col-md-5 col-lg-4'>
@@ -66,10 +86,13 @@
                         </div>
                     </div>
                     <div class='w-100'></div>
-                    <div class='col-12 col-sm-12 col-md-5 col-lg-4 my-1'>Autokopiowanie:</div>
+                    <div class='col-12 col-sm-12 col-md-5 col-lg-4 my-1'>
+                        Autokopiowanie:
+                    </div>
                     <div class='col-12 col-sm-12 col-md-7 col-lg-8 my-1'>
                         <div class='form-check'>
-                            <input class='form-check-input badge-warning checkbox-warning' type='checkbox' id='passCopyAuto'>
+                            <input class='form-check-input badge-warning checkbox-warning' type='checkbox'
+                                id='passCopyAuto'>
                         </div>
                     </div>
                     <div class='w-100'></div>
