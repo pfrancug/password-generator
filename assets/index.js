@@ -69,14 +69,14 @@ document.querySelector('#passRadio10').addEventListener('change', (e) => {
 
 if (localStorage.getItem('passRadioVal')) {
     document.querySelector(`#passRadio${localStorage.getItem('passRadioVal')}`).checked = true
-    document.querySelector('#passCopyAuto').disabled = localStorage.getItem('passRadioVal') !== '1' ? true : false
+    document.querySelector('#passCopyAuto').disabled = localStorage.getItem('passRadioVal') !== '1'
 }
 
 document.querySelector('#passCopyAuto').addEventListener('change', (e) => {
     localStorage.setItem('passCopyAuto', document.querySelector('#passCopyAuto').checked)
 })
 
-document.querySelector('#passCopyAuto').checked = localStorage.getItem('passCopyAuto') === 'true' ? true : false
+document.querySelector('#passCopyAuto').checked = localStorage.getItem('passCopyAuto') === 'true'
 
 const generatePassElement = () => {
     const inputGroup = document.createElement('div')
