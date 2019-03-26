@@ -5,7 +5,7 @@ const specials = '!@#$%'
 let passLength = {
     letters: 6,
     numbers: 2,
-    specials: 0,
+    specials: false,
 }
 let passNum = 0
 
@@ -15,7 +15,7 @@ const generatePassword = () => {
         return set.charAt(Math.floor(Math.random() * set.length))
     }
     for (let i = 0; i < passLength.letters / 2; i++) {
-        password += i === 0 ? randomChar(consonants).toUpperCase() : randomChar(consonants)
+        password += i ? randomChar(consonants) : randomChar(consonants).toUpperCase()
         password += randomChar(vowels)
     }
     for (let i = 0; i < passLength.numbers; i++) {
@@ -31,20 +31,20 @@ document.querySelector('#passLengthLetVal').addEventListener('change', (e) => {
     passLength.letters = e.target.value
     localStorage.setItem('passLength', JSON.stringify(passLength))
     document.querySelector('#passLengthLetTxt').textContent = e.target.value
-    document.querySelector('#passLength').textContent = +passLength.letters + +passLength.numbers + +passLength.specials
+    document.querySelector('#passLength').textContent = +passLength.letters + +passLength.numbers + passLength.specials
 })
 
 document.querySelector('#passLengthNumVal').addEventListener('change', (e) => {
     passLength.numbers = e.target.value
     localStorage.setItem('passLength', JSON.stringify(passLength))
     document.querySelector('#passLengthNumTxt').textContent = e.target.value
-    document.querySelector('#passLength').textContent = +passLength.letters + +passLength.numbers + +passLength.specials
+    document.querySelector('#passLength').textContent = +passLength.letters + +passLength.numbers + passLength.specials
 })
 
 document.querySelector('#specialChar').addEventListener('change', (e) => {
-    passLength.specials = e.target.checked === true ? 1 : 0
+    passLength.specials = e.target.checked
     localStorage.setItem('passLength', JSON.stringify(passLength))
-    document.querySelector('#passLength').textContent = +passLength.letters + +passLength.numbers + +passLength.specials
+    document.querySelector('#passLength').textContent = +passLength.letters + +passLength.numbers + passLength.specials
 })
 
 if (localStorage.getItem('passLength')) {
@@ -54,7 +54,7 @@ if (localStorage.getItem('passLength')) {
     document.querySelector('#passLengthNumVal').value = passLength.numbers
     document.querySelector('#passLengthNumTxt').textContent = passLength.numbers
     document.querySelector('#specialChar').checked = passLength.specials
-    document.querySelector('#passLength').textContent = +passLength.letters + +passLength.numbers + +passLength.specials
+    document.querySelector('#passLength').textContent = +passLength.letters + +passLength.numbers + passLength.specials
 }
 
 document.querySelector('#passRadio1').addEventListener('change', (e) => {
@@ -103,16 +103,9 @@ const generatePassElement = () => {
     return inputGroup
 }
 
-const generateSpaceElement = () => {
-    const newSpace = document.createElement('div')
-    newSpace.className = 'progress-bar bg-secondary col-9'
-    return newSpace
-}
-
 document.querySelector('#passGen').addEventListener('click', (e) => {
     e.preventDefault()
     document.querySelector('#passwords').innerHTML = ''
-    document.querySelector('#passwords').append(generateSpaceElement())
     if (document.querySelector('#passRadio1').checked) {
         document.querySelector('#passwords').append(generatePassElement())
         if (document.querySelector('#passCopyAuto').checked) {
@@ -124,5 +117,4 @@ document.querySelector('#passGen').addEventListener('click', (e) => {
             document.querySelector('#passwords').append(generatePassElement())
         }
     }
-    document.querySelector('#passwords').append(generateSpaceElement())
 })
