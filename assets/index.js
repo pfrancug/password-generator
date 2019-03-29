@@ -1,13 +1,14 @@
-const vowels = 'aeuy'
-const consonants = 'bcdfghjkmnprstwz'
-const numbers = '123456789'
-const specials = '!@#$%'
+const collection = {
+    vowels: 'aeuy',
+    consonants: 'bcdfghjkmnprstwz',
+    numbers: '123456789',
+    specials: '!@#$%',
+}
 let passLength = {
     letters: 6,
     numbers: 2,
     specials: false,
 }
-let passNum = 0
 
 const generatePassword = () => {
     let password = ''
@@ -15,14 +16,14 @@ const generatePassword = () => {
         return set.charAt(Math.floor(Math.random() * set.length))
     }
     for (let i = 0; i < passLength.letters / 2; i++) {
-        password += i ? randomChar(consonants) : randomChar(consonants).toUpperCase()
-        password += randomChar(vowels)
+        password += i ? randomChar(collection.consonants) : randomChar(collection.consonants).toUpperCase()
+        password += randomChar(collection.vowels)
     }
     for (let i = 0; i < passLength.numbers; i++) {
-        password += randomChar(numbers)
+        password += randomChar(collection.numbers)
     }
     if (passLength.specials) {
-        password += randomChar(specials)
+        password += randomChar(collection.specials)
     }
     return password
 }
@@ -73,7 +74,7 @@ if (localStorage.getItem('passRadioVal')) {
 }
 
 document.querySelector('#passCopyAuto').addEventListener('change', (e) => {
-    localStorage.setItem('passCopyAuto', document.querySelector('#passCopyAuto').checked)
+    localStorage.setItem('passCopyAuto', e.target.checked)
 })
 
 document.querySelector('#passCopyAuto').checked = localStorage.getItem('passCopyAuto') === 'true'
@@ -91,10 +92,9 @@ const generatePassElement = () => {
     inputGroupAppend.className = 'input-group-append'
     const button = document.createElement('button')
     button.className = 'btn btn-dark'
-    button.id = `passCopy${passNum += 1}`
     button.innerText = 'Kopiuj'
     button.type = 'button'
-    button.addEventListener('click', (e) => {
+    button.addEventListener('click', () => {
         formControl.select()
         document.execCommand('copy')
     })
