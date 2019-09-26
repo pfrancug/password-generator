@@ -1,0 +1,12 @@
+.header {
+    background: $off-black;
+    color: $green;
+    margin-bottom: $xl-size;
+    padding: $m-size 0;
+  }
+  
+  .header__title {
+    font-size: $l-size;
+    margin: 0;
+    text-align: center;
+  }
