@@ -1,0 +1,43 @@
+.settings {
+  background-color: $grey;
+  border-bottom: 1px solid $dark-grey;
+  color: $off-black;
+  padding: $s-size;
+}
+
+.settings__container {
+  align-items: center;
+  display: block;
+  justify-content: space-around;
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 0 $m-size;
+}
+
+.settings__options {
+  align-items: flex;
+  justify-content: space-evenly;
+  display: flex;
+}
+
+.settings__options:nth-child(2) {
+  margin-top: $s-size;
+}
+
+.checkbox {
+  align-items: baseline;
+  display: flex;
+}
+
+.checkbox > input {
+  margin-right: 0.4rem;
+}
+
+.input {
+  border: 1px solid $blue;
+  border-radius: 5px;
+  font-size: $m-size;
+  margin-left: 0.4rem;
+  padding: 0.1rem 0.4rem;
+  width: $xl-size;
+}
