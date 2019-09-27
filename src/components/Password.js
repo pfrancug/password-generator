@@ -1,12 +1,17 @@
 import React from 'react'
 
 export default class Password extends React.Component {
-    constructor(props){
-        super(props)
+    handleCopy = (e) => {
+        const pass = document.getElementById(this.props.password)
+        pass.select()
+        document.execCommand('copy')
     }
     render() {
         return (
-            <div>passes</div>
+            <div className="list-item">
+                <input id={this.props.password} value={this.props.password} readOnly></input>
+                <button className="button button--text" onClick={this.handleCopy}>Kopiuj</button>
+            </div>
         )
     }
 }

@@ -1,27 +1,30 @@
 import React from 'react'
 import randomize from 'randomatic'
+import pokemon from 'pokemon'
 
 export default class Action extends React.Component {
-    handleAction = () => {
-        const generate = (amount) => {
-            const passwords = []
-
-            for (let i = 0; i < amount; i++) {
-
-                // const password = randomize('Aa0', this.props.length, { exclude: '0oOiIlL1' })
-                const password = randomize('AA') + randomize('00') + randomize('aa') + randomize('00')
-
-                passwords.push(password)
-            }
-            console.log(passwords)
-
-            return passwords
+    handleAction = (passwords) => this.props.handleSetting('passwords', passwords)
+    handleRandomize = () => {
+        if (!this.props.difficult) {
+            const word = pokemon.random().split('').filter((char) => char.match(/[A-Z]/i)).join('')
+            const number = randomize('0', (word.length >= 8 ? 1 : 8 - word.length))
+            return word + number
+        } else if (this.props.special) {
+            return randomize('*', this.props.length, { exclude: '0oOiIlL1\'`~' })
+        } else {
+            return randomize('Aa0', this.props.length, { exclude: '0oOiIlL1' })
         }
-        this.props.handleSetting('passwords', generate(this.props.amount))
+    }
+    handleGeneratePasswords = () => {
+        const passwords = []
+        for (let i = 0; i < this.props.amount; i++) {
+            passwords.push(this.handleRandomize())
+        }
+        this.handleAction(passwords)
     }
     render() {
         return (
-            <button onClick={this.handleAction}>Generuj</button>
+            <button className="action" onClick={this.handleGeneratePasswords}>Generuj</button>
         )
     }
 }

@@ -1,0 +1,19 @@
+.footer {
+  background: $off-black;
+  bottom: 0;
+  padding: $xs-size 0;
+  position: fixed;
+  width: 100%;
+}
+
+footer {
+  color: $dark-blue;
+  font-size: $s-size;
+  text-align: center;
+}
+
+footer > a {
+  color: $blue;
+  font-weight: bold;
+  text-decoration: none;
+}
