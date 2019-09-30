@@ -11,12 +11,10 @@ export default class Settings extends React.Component {
         return (
             <div className="settings">
                 <div className="settings__container">
-                    <div className="settings__options">
                         <label className="checkbox">
                             <input name="difficult" type="checkbox" defaultChecked={this.props.difficult} onClick={this.handleCheck}></input>
                             Trudne hasła
                         </label>
-                    </div>
                     {this.props.difficult && (
                         <div className="settings__options">
                             <label className="checkbox">

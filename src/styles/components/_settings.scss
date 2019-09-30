@@ -6,21 +6,12 @@
 }
 
 .settings__container {
-  align-items: center;
-  display: block;
-  justify-content: space-around;
   max-width: 60rem;
   margin: 0 auto;
   padding: 0 $m-size;
 }
 
-.settings__options {
-  align-items: flex;
-  justify-content: space-evenly;
-  display: flex;
-}
-
-.settings__options:nth-child(2) {
+.settings__options > *{
   margin-top: $s-size;
 }
 
