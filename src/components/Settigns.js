@@ -4,7 +4,7 @@ export default class Settings extends React.Component {
 
     handleCheck = (e) => this.props.handleSetting(e.target.name, e.target.checked)
     handleValue = (e) => {
-        const value = (e.target.value >= 8 && e.target.value % 1 === 0) ? e.target.value : 8
+        const value = (e.target.value >= 10 && e.target.value % 1 === 0) ? e.target.value : 10
         this.props.handleSetting(e.target.name, value)
     }
     render() {
