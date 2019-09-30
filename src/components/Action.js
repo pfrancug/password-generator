@@ -7,7 +7,7 @@ export default class Action extends React.Component {
     handleRandomize = () => {
         if (!this.props.difficult) {
             const word = pokemon.random().split('').filter((char) => char.match(/[A-Z]/i)).join('')
-            const number = randomize('0', (word.length >= 8 ? 1 : 8 - word.length))
+            const number = randomize('0', (word.length >= 10 ? 1 : 10 - word.length))
             return word + number
         } else if (this.props.special) {
             return randomize('*', this.props.length, { exclude: '0oOiIlL1\'`~' })
